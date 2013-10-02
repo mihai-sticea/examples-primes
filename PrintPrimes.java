@@ -1,16 +1,16 @@
 public class PrintPrimes {
   int numberOfPrimes;
-  int numberOfRows;
-  int numberOfColumns;
-  int primeNumberToBenextSquaredPrimedMAX;
+  int RR;
+  int CC;
+  int ORDMAX;
   int listOfPrimes[];
 
-  public PrintPrimes(int numberOfPrimes, int numberOfRows, int numberOfColumns, int primeNumberToBenextSquaredPrimedMAX) {
+  public PrintPrimes(int numberOfPrimes, int RR, int CC, int ORDMAX) {
     this.numberOfPrimes   = numberOfPrimes;
-    this.numberOfRows  = numberOfRows;
-    this.numberOfColumns  = numberOfColumns;
+    this.RR  = RR;
+    this.CC  = CC;
 
-    this.primeNumberToBenextSquaredPrimedMAX = primeNumberToBenextSquaredPrimedMAX;
+    this.ORDMAX = ORDMAX;
     this.listOfPrimes = new int[numberOfPrimes + 1];
   }
 
@@ -32,33 +32,33 @@ public class PrintPrimes {
   }
 
   private void calculateOddPrimes() {
-      boolean numberIsPrime;
+      boolean JPRIME;
       int N;
-      int MULT[] = new int[primeNumberToBenextSquaredPrimedMAX + 1];
+      int MULT[] = new int[ORDMAX + 1];
 
-      int oddNumber = 1;
-      int primeNumberToBenextSquaredPrimed = 2;
-      int nextSquaredPrime = 9;
+      int J = 1;
+      int ORD = 2;
+      int SQUARE = 9;
 
       for(int primesFoundSoFar = 2; primesFoundSoFar <= numberOfPrimes; primesFoundSoFar++) {
         do {
-          oddNumber = oddNumber + 2;
-          if (oddNumber == nextSquaredPrime) {
-            primeNumberToBenextSquaredPrimed = primeNumberToBenextSquaredPrimed + 1;
-            nextSquaredPrime = listOfPrimes[primeNumberToBenextSquaredPrimed] * listOfPrimes[primeNumberToBenextSquaredPrimed];
-            MULT[primeNumberToBenextSquaredPrimed - 1] = oddNumber;
+          J = J + 2;
+          if (J == SQUARE) {
+            ORD = ORD + 1;
+            SQUARE = listOfPrimes[ORD] * listOfPrimes[ORD];
+            MULT[ORD - 1] = J;
           }
           N = 2;
-          numberIsPrime = true;
-          while (N < primeNumberToBenextSquaredPrimed && numberIsPrime) {
-            while (MULT[N] < oddNumber)
+          JPRIME = true;
+          while (N < ORD && JPRIME) {
+            while (MULT[N] < J)
               MULT[N] = MULT[N] + listOfPrimes[N] + listOfPrimes[N];
-            if (MULT[N] == oddNumber)
-              numberIsPrime = false;
+            if (MULT[N] == J)
+              JPRIME = false;
             N = N + 1;
           }
-        } while (!numberIsPrime);
-        listOfPrimes[primesFoundSoFar] = oddNumber;
+        } while (!JPRIME);
+        listOfPrimes[primesFoundSoFar] = J;
       }
     }
 
@@ -69,15 +69,17 @@ public class PrintPrimes {
           System.out.println("The First " + numberOfPrimes +
                                " Prime Numbers --- Page " + pageNumber);
           System.out.println("");
-          for (int rowOffset = pageOffset; rowOffset < pageOffset + numberOfRows; rowOffset++){
-            for (int i = 0; i < numberOfColumns;i++)
-              if (rowOffset + i * numberOfRows <= numberOfPrimes)
-                System.out.format("%10d", listOfPrimes[rowOffset + i * numberOfRows]);
+          for (int rowOffset = pageOffset; rowOffset < pageOffset + RR; rowOffset++){
+            for (int C = 0; C < CC;C++)
+              if (rowOffset + C * RR <= numberOfPrimes)
+                System.out.format("%10d", listOfPrimes[rowOffset + C * RR]);
             System.out.println("");
           }
           System.out.println("\f");
           pageNumber = pageNumber + 1;
-          pageOffset = pageOffset + numberOfRows * numberOfColumns;
+          pageOffset = pageOffset + RR * CC;
         }
     }
 }
+
+					 
