@@ -5,7 +5,8 @@ public class PrintPrimes {
   int sizeOfHelperArray;
   int listOfPrimes[];
 
-  public PrintPrimes(int numberOfPrimes, int numberOfRows, int numberOfColumns, int sizeOfHelperArray) {
+  public PrintPrimes(int numberOfPrimes, int numberOfRows, int numberOfColumns, 
+                     int sizeOfHelperArray) {
     this.numberOfPrimes = numberOfPrimes;
     this.numberOfRows = numberOfRows;
     this.numberOfColumns = numberOfColumns;
@@ -40,24 +41,34 @@ public class PrintPrimes {
       int primeNumberToBeSquared = 2;
       int nextSquaredPrime = 9;
 
-      for(int primesFoundSoFar = 2; primesFoundSoFar <= numberOfPrimes; primesFoundSoFar++) {
+      for(int primesFoundSoFar = 2; primesFoundSoFar <= numberOfPrimes; 
+          primesFoundSoFar++) {
         do {
           oddNumber = oddNumber + 2;
+          
           if (oddNumber == nextSquaredPrime) {
             primeNumberToBeSquared = primeNumberToBeSquared + 1;
-            nextSquaredPrime = listOfPrimes[primeNumberToBeSquared] * listOfPrimes[primeNumberToBeSquared];
+            nextSquaredPrime = listOfPrimes[primeNumberToBeSquared] * 
+                               listOfPrimes[primeNumberToBeSquared];
             helperArray[primeNumberToBeSquared - 1] = oddNumber;
           }
+          
           positionInHelperArray = 2;
           numberIsPrime = true;
+          
           while (positionInHelperArray < primeNumberToBeSquared && numberIsPrime) {
-            while (helperArray[positionInHelperArray] < oddNumber)
-              helperArray[positionInHelperArray] = helperArray[positionInHelperArray] + listOfPrimes[positionInHelperArray] + listOfPrimes[positionInHelperArray];
-            if (helperArray[positionInHelperArray] == oddNumber)
+            while (helperArray[positionInHelperArray] < oddNumber){
+              helperArray[positionInHelperArray] = helperArray[positionInHelperArray] + 
+                            listOfPrimes[positionInHelperArray] + 
+                            listOfPrimes[positionInHelperArray];
+            }
+            if (helperArray[positionInHelperArray] == oddNumber){
               numberIsPrime = false;
+            }
             positionInHelperArray = positionInHelperArray + 1;
           }
-        } while (!numberIsPrime);
+        } 
+        while (!numberIsPrime);
         listOfPrimes[primesFoundSoFar] = oddNumber;
       }
     }
@@ -69,10 +80,13 @@ public class PrintPrimes {
           System.out.println("The First " + numberOfPrimes +
                                " Prime Numbers --- Page " + pageNumber);
           System.out.println("");
-          for (int rowOffset = pageOffset; rowOffset < pageOffset + numberOfRows; rowOffset++){
-            for (int i = 0; i < numberOfColumns;i++)
-              if (rowOffset + i * numberOfRows <= numberOfPrimes)
+          for (int rowOffset = pageOffset; rowOffset < pageOffset + numberOfRows; 
+                  rowOffset++){
+            for (int i = 0; i < numberOfColumns;i++){
+              if (rowOffset + i * numberOfRows <= numberOfPrimes){
                 System.out.format("%10d", listOfPrimes[rowOffset + i * numberOfRows]);
+              }
+            }
             System.out.println("");
           }
           System.out.println("\f");
