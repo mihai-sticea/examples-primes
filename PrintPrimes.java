@@ -1,3 +1,12 @@
+/**
+*This class finds and prints prime numbers.
+*By changing the variable numberOfPrimes, 
+*the user tells the program how many prime numbers
+*will be found and printed.
+*@author ECSE321-team - design and implementation
+*@author Mihai Sticea - 260429151 - coding style editting
+*/
+
 public class PrintPrimes {
   int numberOfPrimes;
   int numberOfRows;
@@ -24,9 +33,9 @@ public class PrintPrimes {
 
   public void calculatePrimes() {
       /* Two is the only even prime. All other prime numbers are odd.
-* To simplify the code, we simply add 2 as a prime number, and
-* delegate the task of finding all odd prime numbers to a helper
-* function.
+ To simplify the code, we simply add 2 as a prime number, and
+ delegate the task of finding all odd prime numbers to a helper
+ function.
 */
       listOfPrimes[1] = 2;
       calculateOddPrimes();
